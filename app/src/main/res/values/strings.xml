@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Retrofit and Picasso</string>
+    <string name="a">A</string>
+    <string name="larntech">larntech</string>
+    <string name="beername">BeerName</string>
+    <string name="beer_name">beer name</string>
+    <string name="beer_list">Beer list</string>
+</resources>
