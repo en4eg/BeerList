@@ -13,17 +13,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
-
     RecyclerView recyclerView;
     UsersAdapter usersAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         recyclerView = findViewById(R.id.recyclerViewer);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

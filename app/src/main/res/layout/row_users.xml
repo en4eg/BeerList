@@ -11,8 +11,8 @@
         android:padding="10dp">
 
         <RelativeLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:layout_width="60dp"
+            android:layout_height="60dp">
 
             <ImageView
                 android:id="@+id/imageBeer"
@@ -28,6 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="60dp"
             android:text="@string/beer_name"
+            android:textSize="20sp"
             android:textColor="@color/black" />
 
         <ImageView
