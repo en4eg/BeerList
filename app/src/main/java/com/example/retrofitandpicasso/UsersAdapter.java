@@ -42,7 +42,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         return userResponseList.size();
     }
 
-    public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
+    public static class UserAdapterViewHolder extends RecyclerView.ViewHolder {
         public UserAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
         }

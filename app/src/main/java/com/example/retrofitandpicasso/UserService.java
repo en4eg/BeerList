@@ -8,6 +8,4 @@ import retrofit2.http.GET;
 public interface UserService {
     @GET("beers/")
     Call<List<UserResponse>> getAllBeers();
-
-
 }

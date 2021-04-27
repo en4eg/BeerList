@@ -2,12 +2,14 @@ package com.example.retrofitandpicasso;
 
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,24 +29,21 @@ public class MainActivity extends AppCompatActivity {
         usersAdapter = new UsersAdapter();
 
         getAllBeer();
-
     }
 
-    public void getAllBeer(){
-
+    public void getAllBeer() {
         Call<List<UserResponse>> beerList = ApiClient.getUserService().getAllBeers();
-
         beerList.enqueue(new Callback<List<UserResponse>>() {
-
             @Override
             public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
-
                 if (response.isSuccessful()) {
                     List<UserResponse> userResponses = response.body();
                     usersAdapter.setData(userResponses);
                     recyclerView.setAdapter(usersAdapter);
 
-                    Log.e("success", response.body().toString());
+                    if (response.body() != null) {
+                        Log.e("success", response.body().toString());
+                    }
                 }
             }
 

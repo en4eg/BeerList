@@ -1,15 +1,12 @@
 package com.example.retrofitandpicasso;
 
 public class UserResponse {
-
     private int id;
     private String name;
     private String tagline;
     private String first_brewed;
     private String description;
     private String image_url;
-
-
 
 
     public void setId(int id) {
@@ -37,8 +34,6 @@ public class UserResponse {
     }
 
 
-
-
     public int getId() {
         return id;
     }
@@ -61,7 +56,7 @@ public class UserResponse {
 
     public String getImageUrl() {
         return image_url;
-        
+
     }
 
     @Override
