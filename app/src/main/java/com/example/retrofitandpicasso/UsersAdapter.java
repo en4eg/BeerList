@@ -49,8 +49,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
 
         public void bind(UserResponse item) {
             ImageView iv = itemView.findViewById(R.id.imageBeer);
-            Picasso.get().load(item.getImageUrl()).into(iv);
-            ((TextView) itemView.findViewById(R.id.beerName)).setText(item.getName());
+//            Picasso.get().load(item.getImageUrl()).into(iv);
+            ((TextView) itemView.findViewById(R.id.beerName)).setText(item.name);
 
         }
     }

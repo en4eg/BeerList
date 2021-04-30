@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,13 +33,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAllBeer() {
-        Call<List<UserResponse>> beerList = ApiClient.getUserService().getAllBeers();
-        beerList.enqueue(new Callback<List<UserResponse>>() {
+        Call<UserResponse> beerList = ApiClient.getUserService().getAllBeers("3882068318495130", "1");
+        beerList.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<List<UserResponse>> call, Response<List<UserResponse>> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    List<UserResponse> userResponses = response.body();
-                    usersAdapter.setData(userResponses);
+                    UserResponse userResponse = response.body();
+                    List<UserResponse> responses = new ArrayList<UserResponse>();
+                    responses.add(userResponse);
+                    usersAdapter.setData(responses);
                     recyclerView.setAdapter(usersAdapter);
 
                     if (response.body() != null) {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<UserResponse>> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 Log.e("failure", t.getLocalizedMessage());
             }
         });

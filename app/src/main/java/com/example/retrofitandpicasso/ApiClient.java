@@ -8,7 +8,7 @@ public class ApiClient {
     private static Retrofit getRetrofit() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.punkapi.com/v2/")
+                .baseUrl("https://www.superheroapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;
