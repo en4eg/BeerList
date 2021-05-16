@@ -12,4 +12,10 @@ public interface UserService {
             @Path("token") String token,
             @Path("name") String name
     );
+
+    @GET("api.php/{token}/{id}")
+    Call<DetailUserResponse> getHero(
+            @Path("token") String token,
+            @Path("id") String id
+    );
 }

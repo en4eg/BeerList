@@ -6,4 +6,12 @@
     <string name="beer_name">Hero name</string>
     <string name="beer_list">SuperheroList</string>
     <string name="superhero">SuperHero</string>
+    <string name="powerstats">Харрактеристики:</string>
+    <string name="intelligence">Интеллект</string>
+    <string name="strength">Сила</string>
+    <string name="World">Вселенная</string>
+    <string name="speed">Скорость</string>
+    <string name="durability">Выносливость</string>
+    <string name="power">Мощь</string>
+    <string name="combat">Боеспособность</string>
 </resources>

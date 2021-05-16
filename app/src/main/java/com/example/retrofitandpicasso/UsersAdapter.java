@@ -18,6 +18,7 @@ import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder> {
     private List<UserResponse.Item> mUserResponseList = new ArrayList<>();
+    private OnClickListener mOnClickListener = null;
 
     @Override
     public int getItemCount() {
@@ -41,7 +42,16 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         notifyDataSetChanged();
     }
 
-    public static class UserAdapterViewHolder extends RecyclerView.ViewHolder {
+    public void setListener(OnClickListener listener) {
+        mOnClickListener = listener;
+
+    }
+
+    interface OnClickListener {
+        void onClick(UserResponse.Item item);
+
+    }
+    public class UserAdapterViewHolder extends RecyclerView.ViewHolder {
         public UserAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -52,6 +62,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
                     .load(userResponse.image.url)
                     .into(iv);
             ((TextView) itemView.findViewById(R.id.beerName)).setText(userResponse.name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnClickListener.onClick(userResponse);
+                }
+            });
 
 
         }

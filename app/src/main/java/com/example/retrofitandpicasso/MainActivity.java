@@ -1,7 +1,10 @@
 package com.example.retrofitandpicasso;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +19,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TOKEN = "3882068318495130";
+
     RecyclerView recyclerView;
     UsersAdapter usersAdapter;
 
@@ -23,16 +28,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         recyclerView = findViewById(R.id.recyclerViewer);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         usersAdapter = new UsersAdapter();
         getAllHeroes();
+        usersAdapter.setListener(new UsersAdapter.OnClickListener() {
+            @Override
+            public void onClick(UserResponse.Item item) {
+                Intent intent = new Intent(MainActivity.this, HeroDetailActivity.class);
+                intent.putExtra(HeroDetailActivity.EXTRA_NUMBER, item.id);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getAllHeroes() {
-        String TOKEN = "3882068318495130";
         Call<UserResponse> heroesList = ApiClient.getUserService().getAllHeroes(TOKEN, "a");
         heroesList.enqueue(new Callback<UserResponse>() {
             @Override

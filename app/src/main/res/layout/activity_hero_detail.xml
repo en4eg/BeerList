@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleTextAppearance="@style/ExpandedAppBar"
+            app:collapsedTitleTextAppearance="@style/CollapsedAppBar">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ImageViewHeroDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_collapseMode="parallax"
+                tools:src="@tools:sample/backgrounds/scenic"
+                />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarHeroDetail"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_back"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineHeroDetail"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.35" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroWorld"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/World"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroWorldDetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/full_names"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstats"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="15dp"
+                android:text="@string/powerstats"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroWorld"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsIntelligence"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/intelligence"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstats"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsStrength"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/strength"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsIntelligence"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsSpeed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/speed"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsStrength"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsDurability"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/durability"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsSpeed"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsPower"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/power"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsDurability"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsCombat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/combat"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsPower"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsInt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstats"
+                tools:text="@tools:sample/us_zipcodes"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsStr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsInt"
+                tools:text="@tools:sample/us_zipcodes"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsSpd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsStr"
+                tools:text="@tools:sample/us_zipcodes"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsDur"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsSpd"
+                tools:text="@tools:sample/us_zipcodes"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsPwr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsDur"
+                tools:text="@tools:sample/us_zipcodes"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewHeroPowerstatsCbt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guidelineHeroDetail"
+                app:layout_constraintTop_toTopOf="@+id/textViewHeroPowerstatsPwr"
+                tools:text="@tools:sample/us_zipcodes"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
