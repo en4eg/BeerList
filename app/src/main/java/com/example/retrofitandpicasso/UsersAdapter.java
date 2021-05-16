@@ -1,6 +1,7 @@
 package com.example.retrofitandpicasso;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder> {
-    private List<UserResponse> userResponseList;
+    private List<UserResponse.Item> mUserResponseList = new ArrayList<>();
 
-    public UsersAdapter() {
-    }
-
-    public void setData(List<UserResponse> userResponseList) {
-        this.userResponseList = userResponseList;
-        notifyDataSetChanged();
+    @Override
+    public int getItemCount() {
+        return mUserResponseList.size();
     }
 
     @NonNull
@@ -34,12 +33,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapterViewHolder holder, int position) {
-        ((UserAdapterViewHolder) holder).bind(userResponseList.get(position));
+        holder.bind(mUserResponseList.get(position));
     }
 
-    @Override
-    public int getItemCount() {
-        return userResponseList.size();
+    public void setData(List<UserResponse.Item> heroes) {
+        mUserResponseList = heroes;
+        notifyDataSetChanged();
     }
 
     public static class UserAdapterViewHolder extends RecyclerView.ViewHolder {
@@ -47,10 +46,13 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
             super(itemView);
         }
 
-        public void bind(UserResponse item) {
+        public void bind(UserResponse.Item userResponse) {
             ImageView iv = itemView.findViewById(R.id.imageBeer);
-//            Picasso.get().load(item.getImageUrl()).into(iv);
-            ((TextView) itemView.findViewById(R.id.beerName)).setText(item.name);
+            Picasso.get()
+                    .load(userResponse.image.url)
+                    .into(iv);
+            ((TextView) itemView.findViewById(R.id.beerName)).setText(userResponse.name);
+
 
         }
     }

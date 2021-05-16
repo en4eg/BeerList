@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Retrofit and Picasso</string>
+    <string name="app_name">SuperHero List</string>
     <string name="a">A</string>
     <string name="larntech">larntech</string>
-    <string name="beername">BeerName</string>
-    <string name="beer_name">beer name</string>
-    <string name="beer_list">beer of the world</string>
+    <string name="beername">Hero name</string>
+    <string name="beer_name">Hero name</string>
+    <string name="beer_list">SuperheroList</string>
+    <string name="superhero">SuperHero</string>
 </resources>

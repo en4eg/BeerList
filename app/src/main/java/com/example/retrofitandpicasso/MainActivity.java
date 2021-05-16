@@ -3,12 +3,12 @@ package com.example.retrofitandpicasso;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,20 +28,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         usersAdapter = new UsersAdapter();
-
-        getAllBeer();
+        getAllHeroes();
     }
 
-    public void getAllBeer() {
-        Call<UserResponse> beerList = ApiClient.getUserService().getAllBeers("3882068318495130", "1");
-        beerList.enqueue(new Callback<UserResponse>() {
+    public void getAllHeroes() {
+        String TOKEN = "3882068318495130";
+        Call<UserResponse> heroesList = ApiClient.getUserService().getAllHeroes(TOKEN, "a");
+        heroesList.enqueue(new Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    UserResponse userResponse = response.body();
-                    List<UserResponse> responses = new ArrayList<UserResponse>();
-                    responses.add(userResponse);
-                    usersAdapter.setData(responses);
+                    List<UserResponse.Item> userResponse = response.body().results;
+                    usersAdapter.setData(userResponse);
                     recyclerView.setAdapter(usersAdapter);
 
                     if (response.body() != null) {
@@ -51,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
                 Log.e("failure", t.getLocalizedMessage());
             }
         });

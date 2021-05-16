@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 
 public interface UserService {
     @GET("api.php/{token}/search/{name}")
-    Call<UserResponse> getAllBeers(
+    Call<UserResponse> getAllHeroes(
             @Path("token") String token,
             @Path("name") String name
     );
