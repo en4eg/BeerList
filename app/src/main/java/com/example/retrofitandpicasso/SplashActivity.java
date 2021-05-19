@@ -11,8 +11,8 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
     private static final int DELAY = 3000;
-
     private Timer mTimer = null;
+
     private final TimerTask mTimerTask = new TimerTask() {
         @Override
         public void run() {

@@ -12,7 +12,6 @@ public class DetailUserResponse {
     @SerializedName("biography")
     public Biography biography;
 
-
     static class Image {
         @SerializedName("url")
         public String url;
@@ -36,6 +35,16 @@ public class DetailUserResponse {
     static class Biography {
         @SerializedName("publisher")
         public String world;
+    }
+
+    @Override
+    public String toString() {
+        return "DetailUserResponse{" +
+                "name='" + name + '\'' +
+                ", image=" + image +
+                ", powerstats=" + powerstats +
+                ", biography=" + biography +
+                '}';
     }
 }
 

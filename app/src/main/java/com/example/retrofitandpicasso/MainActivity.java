@@ -3,16 +3,20 @@ package com.example.retrofitandpicasso;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,7 +24,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TOKEN = "3882068318495130";
-
+    private Timer mTimer = null;
     RecyclerView recyclerView;
     UsersAdapter usersAdapter;
 
@@ -41,6 +45,40 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarList);
+        Menu menu = toolbar.getMenu();
+        MenuItem searchMenuItem = menu.findItem(R.id.mi_list_search);
+        SearchView searchView = (SearchView) searchMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (mTimer != null) {
+                    mTimer.cancel();
+                }
+                mTimer = new Timer();
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        mTimer = null;
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                usersAdapter.setFilter(newText);
+                                usersAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }, 5);
+                return false;
+            }
+        });
     }
 
     public void getAllHeroes() {
@@ -52,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     List<UserResponse.Item> userResponse = response.body().results;
                     usersAdapter.setData(userResponse);
                     recyclerView.setAdapter(usersAdapter);
-
                     if (response.body() != null) {
                         Log.e("success", response.body().toString());
                     }

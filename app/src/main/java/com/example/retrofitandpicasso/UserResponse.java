@@ -21,4 +21,11 @@ public class UserResponse {
             public String url;
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserResponse{" +
+                "results=" + results +
+                '}';
+    }
 }
