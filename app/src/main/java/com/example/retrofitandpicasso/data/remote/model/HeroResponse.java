@@ -1,14 +1,14 @@
-package com.example.retrofitandpicasso;
+package com.example.retrofitandpicasso.data.remote.model;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class UserResponse {
+public class HeroResponse {
     @SerializedName("results")
     public List<Item> results;
 
-    class Item {
+    public static class Item {
         @SerializedName("name")
         public String name;
         @SerializedName("image")
@@ -16,7 +16,7 @@ public class UserResponse {
         @SerializedName("id")
         public String id;
 
-        class Image {
+        public static class Image {
             @SerializedName("url")
             public String url;
         }

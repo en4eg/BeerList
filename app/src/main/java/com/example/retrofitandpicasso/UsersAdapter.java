@@ -10,14 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitandpicasso.data.remote.model.HeroResponse;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterViewHolder> {
-    private List<UserResponse.Item> mUserResponseList = new ArrayList<>();
-    private List<UserResponse.Item> mFilteredUserResponseList = new ArrayList<>();
+    private List<HeroResponse.Item> mUserResponseList = new ArrayList<>();
+    private List<HeroResponse.Item> mFilteredUserResponseList = new ArrayList<>();
     private String mFilter = "";
     private OnClickListener mOnClickListener = null;
 
@@ -30,7 +31,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
     @Override
     public UserAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        return new UserAdapterViewHolder(LayoutInflater.from(context).inflate(R.layout.row_users, parent, false));
+        return new UserAdapterViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list, parent, false));
     }
 
     @Override
@@ -42,7 +43,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         mOnClickListener = listener;
     }
 
-    public void setData(List<UserResponse.Item> heroes) {
+    public void setData(List<HeroResponse.Item> heroes) {
         mUserResponseList = heroes;
         notifyDataSetChanged();
     }
@@ -51,9 +52,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         return mUserResponseList.size();
     }
 
-    public void addHeroes(List<UserResponse.Item> heroes) {
+    public void addHeroes(List<HeroResponse.Item> heroes) {
         mUserResponseList.addAll(heroes);
-        for (UserResponse.Item pokemon : heroes) {
+        for (HeroResponse.Item pokemon : heroes) {
             if (pokemon.name.contains(mFilter)) {
                 mFilteredUserResponseList.add(pokemon);
             }
@@ -66,7 +67,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
         if (filter.length() == 0) {
             mFilteredUserResponseList.addAll(mUserResponseList);
         } else {
-            for (UserResponse.Item pokemon : mUserResponseList) {
+            for (HeroResponse.Item pokemon : mUserResponseList) {
                 if (pokemon.name.contains(filter)) {
                     mFilteredUserResponseList.add(pokemon);
                 }
@@ -75,7 +76,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
     }
 
     interface OnClickListener {
-        void onClick(UserResponse.Item item);
+        void onClick(HeroResponse.Item item);
 
     }
 
@@ -84,7 +85,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserAdapterV
             super(itemView);
         }
 
-        public void bind(UserResponse.Item userResponse) {
+        public void bind(HeroResponse.Item userResponse) {
             ImageView iv = itemView.findViewById(R.id.imageBeer);
             Picasso.get()
                     .load(userResponse.image.url)

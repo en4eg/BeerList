@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofitandpicasso.data.remote.HeroClient;
+import com.example.retrofitandpicasso.data.remote.model.HeroResponse;
+
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,7 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class HeroListActivity extends AppCompatActivity {
     public static final String TOKEN = "3882068318495130";
     private Timer mTimer = null;
     RecyclerView recyclerView;
@@ -39,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         getAllHeroes();
         usersAdapter.setListener(new UsersAdapter.OnClickListener() {
             @Override
-            public void onClick(UserResponse.Item item) {
-                Intent intent = new Intent(MainActivity.this, HeroDetailActivity.class);
+            public void onClick(HeroResponse.Item item) {
+                Intent intent = new Intent(HeroListActivity.this, HeroDetailActivity.class);
                 intent.putExtra(HeroDetailActivity.EXTRA_NUMBER, item.id);
                 startActivity(intent);
             }
@@ -82,12 +85,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAllHeroes() {
-        Call<UserResponse> heroesList = ApiClient.getUserService().getAllHeroes(TOKEN, "a");
-        heroesList.enqueue(new Callback<UserResponse>() {
+        Call<HeroResponse> heroesList = HeroClient.getUserService().getAllHeroes(TOKEN, "a");
+        heroesList.enqueue(new Callback<HeroResponse>() {
             @Override
-            public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+            public void onResponse(@NonNull Call<HeroResponse> call, @NonNull Response<HeroResponse> response) {
                 if (response.isSuccessful()) {
-                    List<UserResponse.Item> userResponse = response.body().results;
+                    List<HeroResponse.Item> userResponse = response.body().results;
                     usersAdapter.setData(userResponse);
                     recyclerView.setAdapter(usersAdapter);
                     if (response.body() != null) {
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<HeroResponse> call, @NonNull Throwable t) {
                 Log.e("failure", t.getLocalizedMessage());
             }
         });

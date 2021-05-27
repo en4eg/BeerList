@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".HeroListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarList"
@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
-            tools:listitem="@layout/row_users" >
+            tools:listitem="@layout/item_list" >
 
         </androidx.recyclerview.widget.RecyclerView>
 

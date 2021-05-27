@@ -1,4 +1,4 @@
-package com.example.retrofitandpicasso;
+package com.example.retrofitandpicasso.data.local;
 
 
 import android.content.Context;

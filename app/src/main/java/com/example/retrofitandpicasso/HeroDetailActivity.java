@@ -9,13 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.retrofitandpicasso.data.remote.HeroClient;
+import com.example.retrofitandpicasso.data.remote.model.HeroDetailResponse;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HeroDetailActivity extends MainActivity {
+public class HeroDetailActivity extends HeroListActivity {
     public static final String EXTRA_NUMBER = "EXTRA_NUMBER";
     public static String number;
 
@@ -35,12 +37,12 @@ public class HeroDetailActivity extends MainActivity {
     }
 
     public void getDetailHero() {
-        Call<DetailUserResponse> hero = ApiClient.getUserService().getHero(TOKEN, number);
-        hero.enqueue(new Callback<DetailUserResponse>() {
+        Call<HeroDetailResponse> hero = HeroClient.getUserService().getHero(TOKEN, number);
+        hero.enqueue(new Callback<HeroDetailResponse>() {
             @Override
-            public void onResponse(@NonNull Call<DetailUserResponse> call, @NonNull Response<DetailUserResponse> response) {
+            public void onResponse(@NonNull Call<HeroDetailResponse> call, @NonNull Response<HeroDetailResponse> response) {
                 if (response.isSuccessful()) {
-                    DetailUserResponse detailUserResponse = response.body();
+                    HeroDetailResponse detailUserResponse = response.body();
                     ((Toolbar) findViewById(R.id.toolbarHeroDetail)).setTitle(detailUserResponse.name);
                     Picasso.get()
                             .load(detailUserResponse.image.url)
@@ -59,7 +61,7 @@ public class HeroDetailActivity extends MainActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<DetailUserResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<HeroDetailResponse> call, @NonNull Throwable t) {
                 Log.e("failure", t.getLocalizedMessage());
             }
         });

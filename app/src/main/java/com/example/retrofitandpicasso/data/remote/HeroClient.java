@@ -1,11 +1,12 @@
-package com.example.retrofitandpicasso;
+package com.example.retrofitandpicasso.data.remote;
+
+import com.example.retrofitandpicasso.data.remote.HeroApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {
-
-    private static Retrofit getRetrofit() {
+public class HeroClient {
+     public Retrofit getRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.superheroapi.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -13,8 +14,8 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static UserService getUserService() {
-        UserService userService = getRetrofit().create(UserService.class);
-        return userService;
+    public static HeroApi getUserService() {
+        HeroApi heroApi = getRetrofit().create(HeroApi.class);
+        return heroApi;
     }
 }

@@ -1,8 +1,8 @@
-package com.example.retrofitandpicasso;
+package com.example.retrofitandpicasso.data.remote.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class DetailUserResponse {
+public class HeroDetailResponse {
     @SerializedName("name")
     public String name;
     @SerializedName("image")
@@ -12,12 +12,12 @@ public class DetailUserResponse {
     @SerializedName("biography")
     public Biography biography;
 
-    static class Image {
+    public static class Image {
         @SerializedName("url")
         public String url;
     }
 
-    static class Powerstats {
+    public static class Powerstats {
         @SerializedName("intelligence")
         public String intl;
         @SerializedName("strength")
@@ -32,7 +32,7 @@ public class DetailUserResponse {
         public String cbt;
     }
 
-    static class Biography {
+    public static class Biography {
         @SerializedName("publisher")
         public String world;
     }
