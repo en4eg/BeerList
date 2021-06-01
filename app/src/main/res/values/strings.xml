@@ -14,4 +14,6 @@
     <string name="durability">Выносливость</string>
     <string name="power">Мощь</string>
     <string name="combat">Боеспособность</string>
+    <string name="hello">hello</string>
+    <string name="choose_symbol">choose first symbol of hero name</string>
 </resources>

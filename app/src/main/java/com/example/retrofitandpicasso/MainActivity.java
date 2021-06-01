@@ -20,6 +20,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TOKEN = "3882068318495130";
+    public static final String EXTRA_SYMBOL = "EXTRA_SYMBOL";
+    public static String symbol;
 
     RecyclerView recyclerView;
     UsersAdapter usersAdapter;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         usersAdapter = new UsersAdapter();
+        symbol = getIntent().getStringExtra(EXTRA_SYMBOL);
         getAllHeroes();
         usersAdapter.setListener(new UsersAdapter.OnClickListener() {
             @Override
@@ -44,12 +47,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAllHeroes() {
-        Call<UserResponse> heroesList = ApiClient.getUserService().getAllHeroes(TOKEN, "a");
+        Call<UserResponse> heroesList = ApiClient.getUserService().getAllHeroes(TOKEN, symbol);
         heroesList.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                 if (response.isSuccessful()) {
-                    List<UserResponse.Item> userResponse = response.body().results;
+                    List<UserResponse.Item> userResponse = null;
+                    if (response.body() != null) {
+                        userResponse = response.body().results;
+                    }
                     usersAdapter.setData(userResponse);
                     recyclerView.setAdapter(usersAdapter);
 
